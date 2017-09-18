@@ -1,19 +1,28 @@
-sudo: false
 language: python
 python:
   - "2.7"
-  - "3.5"
-notifications:
-  email: false
 env:
   - USE_CYTHON=1
-  - USE_CYTHON=
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - conda update --yes conda
+   # add for profile
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
+
 install:
+# add for profile
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
+  - pip install nose-cprof
+  - pip install properform
+
   - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numpy scipy cython nose future
   - pip install -v .
-script: nosetests tests
+script:
+   - nosetests tests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_autograd_4e86350554_0
+  - python -m properform Push 47.88.50.110:15554 asdf_autograd_4e86350554_0 ./profile_autograd_4e86350554_0
+ #2017-09-18 16:43:31 modified at 0
