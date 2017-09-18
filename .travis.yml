@@ -27,6 +27,6 @@ install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION pip numpy scipy nose future
   - pip install -v .
 script:
-  - nosetests tests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_autograd_0fb0b2fba2_1
-  - python -m properform Push 47.88.50.110:15554 asdf_autograd_0fb0b2fba2_1 ./profile_autograd_0fb0b2fba2_1
- #2017-09-18 15:23:24 modified at 0 #2017-09-18 15:23:28 modified at 1
+  - nosetests tests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_autograd_0fb0b2fba2_2
+  - python -m properform Push 47.88.50.110:15554 asdf_autograd_0fb0b2fba2_2 ./profile_autograd_0fb0b2fba2_2
+ #2017-09-18 15:23:24 modified at 0 #2017-09-18 15:23:28 modified at 1 #2017-09-18 15:23:32 modified at 2
